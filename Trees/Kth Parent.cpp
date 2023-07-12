@@ -1,17 +1,19 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int parents[100002];
+int parents[200001];
 
-void DFS(vector<vector<int>> d, int r, int p)
+vector<vector<long long>> tree;
+
+void DFS(int r, int p)
 {
 
-    for(auto x : d[r])
+    for(auto x : tree[r])
     {  
         if(x != p)
         {
-            parents[x+1] = r+1;
-            DFS(d,x,r);
+            parents[x] = r;
+            DFS(x,r);
         }
     }
 }
@@ -23,31 +25,25 @@ int main()
 
     cin >> nodes;
 
-    vector<vector<int>> data(nodes, vector<int> ());
+    tree.assign(200001,vector<long long>());
 
-    int a[nodes], b[nodes];
-
-    for(int x = 0 ; x < nodes - 1 ; x++)
-    {
-        cin >> a[x] >> b[x];
-    }
+    int a,b;
 
     for(int x = 0 ; x < nodes - 1 ; x++)
     {
-        data[a[x]-1].push_back(b[x]-1);
+        cin >> a >> b;
+
+        tree[a].push_back(b);
+
+        tree[b].push_back(a);
     }
 
-    for(int x = 0 ; x < nodes - 1 ; x++)
+    for(int x = 1 ; x < nodes + 1 ; x++)
     {
-        data[b[x]-1].push_back(a[x]-1);
-    }
+        cout << "Nodes Connected With " << x << " : ";
 
-    for(int x = 0 ; x < nodes ; x++)
-    {
-        cout << "Nodes Connected With " << x+1 << " : ";
-
-        for(int y = 0 ; y < data[x].size() ; y++)
-            cout << data[x][y] + 1 << ' ';
+        for(int y = 0 ; y < tree[x].size() ; y++)
+            cout << tree[x][y] << ' ';
         
         cout << endl;
     }
@@ -56,7 +52,7 @@ int main()
 
     cin >> root;
 
-    DFS(data,root-1,-1); 
+    DFS(root,0); 
 
     int child, k;
 
@@ -70,5 +66,6 @@ int main()
     }
 
     cout << child << endl;
+
     return 0;
 }

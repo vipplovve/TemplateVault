@@ -4,16 +4,18 @@ using namespace std;
 int in[100000], out[100000];
 int t;
 
-void DFS(vector<vector<int>> d, int r, int v)
+vector<vector<int>> tree;
+
+void DFS(int r, int v)
 {
     t++;
 
     in[r] = t;
 
-    for(auto x : d[r])
+    for(auto x : tree[r])
     {   
         if(x != v)
-            DFS(d,x,r);
+            DFS(x,r);
     }
     t++;
 
@@ -26,7 +28,7 @@ int main()
 
     cin >> nodes;
 
-    vector<vector<int>> tree(nodes, vector<int> ());
+    tree.assign(200001,vector<int>());
 
     int a,b;
 
@@ -34,17 +36,17 @@ int main()
     {
         cin >> a >> b;
 
-        tree[a-1].push_back(b-1);
+        tree[a].push_back(b);
 
-        tree[b-1].push_back(a-1);
+        tree[b].push_back(a);
     }
 
-    for(int x = 0 ; x < nodes ; x++)
+    for(int x = 1 ; x < nodes + 1 ; x++)
     {
-        cout << "Nodes Connected With " << x+1 << " : ";
+        cout << "Nodes Connected With " << x << " : ";
 
         for(int y = 0 ; y < tree[x].size() ; y++)
-            cout << tree[x][y] + 1 << ' ';
+            cout << tree[x][y] << ' ';
         
         cout << endl;
     }
@@ -54,14 +56,14 @@ int main()
 
     cin >> root;
 
-    DFS(tree,root-1,-1);
+    DFS(root,0);
 
     cout << endl;
 
     cout << "\nThe In-Out Time of Each Node is : -\n\n";
 
-    for(int x = 0 ; x < nodes ; x++)
-        cout << x + 1 << " : " << in[x] << " - " << out[x] << endl;   
+    for(int x = 1 ; x < nodes + 1 ; x++)
+        cout << x << " : " << in[x] << " - " << out[x] << endl;   
 
     return 0;
 }

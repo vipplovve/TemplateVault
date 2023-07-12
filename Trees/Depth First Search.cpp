@@ -1,15 +1,17 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void DFS(vector<vector<int>> d, int r, int v)
-{
-    cout << r + 1 << ' ';
+vector<vector<long long>> tree;
 
-    for(auto x : d[r])
-    {   
-        if(x != v)
-            DFS(d,x,r);
-    }
+vector<long long> traversal;
+
+void DFS(int root, int parent)
+{
+    traversal.push_back(root);
+
+    for(auto i : tree[root])
+        if(i != parent)
+            DFS(i,root);
 }
 
 int main()
@@ -18,40 +20,40 @@ int main()
 
     cin >> nodes;
 
-    vector<vector<int>> data(nodes, vector<int> ());
+    tree.assign(200001,vector<long long>());
+
+    int a,b;
 
     for(int x = 0 ; x < nodes - 1 ; x++)
     {
-        int a,b;
-
         cin >> a >> b;
 
-        data[a-1].push_back(b-1);
+        tree[a].push_back(b);
 
-        data[b-1].push_back(a-1);
+        tree[b].push_back(a);
     }
 
-    for(int x = 0 ; x < nodes ; x++)
+    for(int x = 1 ; x < nodes + 1 ; x++)
     {
-        cout << "Nodes Connected With " << x+1 << " : ";
+        cout << "Nodes Connected With " << x << " : ";
 
-        for(int y = 0 ; y < data[x].size() ; y++)
-            cout << data[x][y] + 1 << ' ';
+        for(int y = 0 ; y < tree[x].size() ; y++)
+            cout << tree[x][y] << ' ';
         
         cout << endl;
     }
-
-    int value;
-
-    cin >> value;
 
     int root;
 
     cin >> root;
 
-    cout << "\nThe DFS Traversal is : \n\n";
+    DFS(root,0);
 
-    DFS(data,root-1,value);
+    cout << endl << "The DFS Traversal is : -\n\n";
 
+    for(auto value : traversal)
+        cout << value << " ";
+    cout << endl;
+    
     return 0;
 }

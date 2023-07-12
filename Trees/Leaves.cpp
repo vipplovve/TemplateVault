@@ -1,17 +1,19 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-long long leaves[100002];
+long long leaves[200001];
 
-void DFS(vector<vector<int>> t , int r, int p)
+vector<vector<long long>> tree;
+
+void DFS(int r, int p)
 {   
-    if(t[r].size() == 1)
+    if(tree[r].size() == 1)
         leaves[r] = 1;
 
-    for(auto x : t[r])
+    for(auto x : tree[r])
         if(x != p)
         {
-            DFS(t,x,r);
+            DFS(x,r);
 
             leaves[r] += leaves[x];
         }
@@ -23,7 +25,7 @@ int main()
 
     cin >> nodes;
 
-    vector<vector<int>> tree(nodes, vector<int>());
+    tree.assign(200001,vector<long long>());
 
     int a,b;
 
@@ -31,17 +33,17 @@ int main()
     {
         cin >> a >> b;
 
-        tree[a-1].push_back(b-1);
+        tree[a].push_back(b);
 
-        tree[b-1].push_back(a-1);
+        tree[b].push_back(a);
     }
 
-    for(int x = 0 ; x < nodes ; x++)
+    for(int x = 1 ; x < nodes + 1 ; x++)
     {
-        cout << "Nodes Connected With " << x+1 << " : ";
+        cout << "Nodes Connected With " << x << " : ";
 
         for(int y = 0 ; y < tree[x].size() ; y++)
-            cout << tree[x][y] + 1 << ' ';
+            cout << tree[x][y] << ' ';
         
         cout << endl;
     }
@@ -50,9 +52,9 @@ int main()
 
     cin >> root;
 
-    DFS(tree,root-1,0);
+    DFS(root,0);
 
-    cout << "\nTotal Number of Leaves are : " << leaves[root - 1] << endl;
+    cout << "\nTotal Number of Leaves are : " << leaves[root] << endl;
 
     return 0;
 }

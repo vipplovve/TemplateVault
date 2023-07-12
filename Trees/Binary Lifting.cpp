@@ -1,15 +1,16 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-long long parent[100002][21];
+long long parent[200001][21];
 
-void DFS(vector<vector<int>> t , int r, int p)
+vector<vector<long long>> tree;
+void DFS(int r, int p)
 {
-    for(auto x : t[r])
+    for(auto x : tree[r])
         if(x != p)
         {
             parent[x][0] = r;
-            DFS(t,x,r);
+            DFS(x,r);
         }   
 }
 
@@ -19,7 +20,7 @@ void BinLift(int n)
 
     for(int x = 1 ; x < limit ; x++)
     {
-        for(int y = 0 ; y < n ; y++)
+        for(int y = 1 ; y < n + 1 ; y++)
         {
             int curr = parent[y][x-1];
 
@@ -49,7 +50,7 @@ int main()
 
     cin >> nodes;
 
-    vector<vector<int>> tree(nodes, vector<int>());
+    tree.assign(200001,vector <long long>());
 
     int a,b;
 
@@ -57,17 +58,17 @@ int main()
     {
         cin >> a >> b;
 
-        tree[a-1].push_back(b-1);
+        tree[a].push_back(b);
 
-        tree[b-1].push_back(a-1);
+        tree[b].push_back(a);
     }
 
-    for(int x = 0 ; x < nodes ; x++)
+    for(int x = 1 ; x < nodes + 1 ; x++)
     {
-        cout << "Nodes Connected With " << x+1 << " : ";
+        cout << "Nodes Connected With " << x << " : ";
 
         for(int y = 0 ; y < tree[x].size() ; y++)
-            cout << tree[x][y] + 1 << ' ';
+            cout << tree[x][y] << ' ';
         
         cout << endl;
     }
@@ -76,7 +77,7 @@ int main()
 
     cin >> root;
 
-    DFS(tree,root-1,0);
+    DFS(root,0);
 
     BinLift(nodes);
 
