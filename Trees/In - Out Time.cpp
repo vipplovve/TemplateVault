@@ -1,22 +1,27 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int in[100000], out[100000];
+int in[200001], out[200001];
 int t;
 
 vector<vector<int>> tree;
 
+bool vis[200001];
+
 void DFS(int r, int v)
 {
+    if(vis[r])
+        return;
+
+    vis[r] = true;
+
     t++;
 
     in[r] = t;
 
     for(auto x : tree[r])
-    {   
-        if(x != v)
-            DFS(x,r);
-    }
+        DFS(x,r);
+    
     t++;
 
     out[r] = t;
