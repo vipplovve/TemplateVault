@@ -92,8 +92,10 @@ int main()
 
     cout << endl << "The Path is : ";
 
-    for(int x = path.size() - 1 ; x >= 0 ; x--)
-        cout << path[x] << (x?" - ":" "); 
+    reverse(path.begin(), path.end());
+
+    for(auto i : path)
+        cout << i << ' ';
     cout << endl;
 
     return 0;
