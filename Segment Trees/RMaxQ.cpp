@@ -2,52 +2,54 @@
 using namespace std;
 
 using ll = long long;
+
 #define setbits(x) __builtin_popcount(x)
+#define vec vector
 
-vector<ll> SegmentTree;
+vec<ll> SegmentTreeMax;
 
-void build(vector<ll> &data, ll input)
+void buildMax(vector<ll> &data, ll input)
 {
-    SegmentTree.assign(2*input, 0);
+    SegmentTreeMax.assign(2*input, -1e12);
 
     for(ll x = 0 ; x < input ; x++)
-        SegmentTree[x + input] = data[x];
+        SegmentTreeMax[x + input] = data[x];
 
     for(ll x = input - 1 ; x > 0 ; x--)
-        SegmentTree[x] = min(SegmentTree[2*x + 1], SegmentTree[2*x]);
+        SegmentTreeMax[x] = max(SegmentTreeMax[2*x + 1], SegmentTreeMax[2*x]);
 }
 
-ll answerQuery(ll current, ll low, ll high, ll lowest, ll highest)
+ll answerMax(ll current, ll low, ll high, ll lowest, ll highest)
 {
     if(lowest <= low && highest >= high)
-        return SegmentTree[current];
+        return SegmentTreeMax[current];
 
     if(low > highest || high < lowest)
-        return 1e12;
+        return -1e12;
 
     ll middle = low + ((high - low) >> 1);
 
-    ll ans = 1e12;
+    ll ans = -1e12;
 
-    ans = min(ans, answerQuery(2*current, low, middle, lowest, highest));
-    ans = min(ans, answerQuery(2*current + 1, middle + 1, high, lowest, highest));
+    ans = max(ans, answerMax(2*current, low, middle, lowest, highest));
+    ans = max(ans, answerMax(2*current + 1, middle + 1, high, lowest, highest));
 
     return ans;
 }
 
-void update(ll index, ll value, ll sz)
+void updateMax(ll index, ll value, ll sz)
 {
-    SegmentTree[sz + index] = value;
+    SegmentTreeMax[sz + index] = value;
 
     for(ll x = (sz + index) / 2 ; x > 0 ; x /= 2)
-        SegmentTree[x] = min(SegmentTree[2*x], SegmentTree[2*x + 1]);
+        SegmentTreeMax[x] = max(SegmentTreeMax[2*x], SegmentTreeMax[2*x + 1]);
 }
 
-void updateR(ll current, ll low, ll high, ll lowest, ll highest, ll value)
+void updateRMax(ll current, ll low, ll high, ll lowest, ll highest, ll value)
 {
     if(lowest <= low && highest >= high)
     {
-        SegmentTree[current] = value;
+        SegmentTreeMax[current] = value;
         return;
     }
  
@@ -59,7 +61,7 @@ void updateR(ll current, ll low, ll high, ll lowest, ll highest, ll value)
     updateR(2*current, low, middle, lowest, highest, value);
     updateR(2*current + 1, middle + 1, high, lowest, highest,value);
 
-    SegmentTree[current] = min(SegmentTree[2*current], SegmentTree[2*current + 1]);
+    SegmentTreeMax[current] = max(SegmentTreeMax[2*current], SegmentTreeMax[2*current + 1]);
 }
 
 int main()
@@ -83,7 +85,7 @@ int main()
         data.push_back(0);
     }
     
-    build(data, input);
+    buildMax(data, input);
 
     while(queries--)
     {
@@ -92,13 +94,10 @@ int main()
         cin >> t >> l >> r;
 
         if(t == 2)
-            cout << answerQuery(1, 1, input, l, r) << endl;
+            cout << answerMax(1, 1, input, l, r) << endl;
         else
-            updateR(1,1,input,l,l,r);
+            updateRMax(1,1,input,l,l,r);
     }
-
-    // for(long x = 0 ; x < SegmentTree.size() ; x++)
-    //     cout << x << " : " << SegmentTree[x] << endl;
 
     return 0;
 }
