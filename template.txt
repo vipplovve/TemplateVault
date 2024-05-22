@@ -41,7 +41,7 @@ const ll MOD = 1000000007;
 #define MODsub(x,y,m) ((max(x,y) % m) - (min(x,y) % m) + m) % m
 #define MODmul(x,y,m) ((x % m) * (y % m)) % m
 
-#define setbits(x) __builtin_popcount(x)
+#define setbits(x) __builtin_popcountll(x)
 #define trailzero(x) __builtin_ctz(x)
 
 #ifndef vipplovve
@@ -53,7 +53,7 @@ const ll MOD = 1000000007;
 int main()
 {
     #ifndef vipplovve
-        freopen("errors.txt","w",stderr);
+        freopen("errors.err","w",stderr);
     #endif
 
     ios_base::sync_with_stdio(false);
@@ -61,7 +61,12 @@ int main()
     cout.tie(NULL);
 
     auto beg = high_resolution_clock::now();
+    
+    // USACO.
 
+    // freopen("filename.in", "r", stdin);
+    // freopen("filename.out", "w", stdout);
+    
     // The Code's Here.
 
     auto end = high_resolution_clock::now();
