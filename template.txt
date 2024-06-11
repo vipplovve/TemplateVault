@@ -44,9 +44,7 @@ const ll MOD = 1000000007;
 #define setbits(x) __builtin_popcountll(x)
 #define trailzero(x) __builtin_ctz(x)
 
-#define vipplovve ONLINE_JUDGE
-
-#ifndef vipplovve
+#ifndef ONLINE_JUDGE
 #define debug(value) cerr << #value << " : " << value << endl;
 #else
 #define debug(value);
@@ -54,7 +52,7 @@ const ll MOD = 1000000007;
 
 int main()
 {
-    #ifndef vipplovve
+    #ifndef ONLINE_JUDGE
         freopen("errors.err","w",stderr);
     #endif
 
@@ -75,7 +73,7 @@ int main()
 
     auto duration = duration_cast <microseconds> (end - beg);
     
-    #ifndef vipplovve
+    #ifndef ONLINE_JUDGE
         cerr << line << "Time Taken : " << duration.count() / 1000 << " ms." << endl << line;
     #endif
 
