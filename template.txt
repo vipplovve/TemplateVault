@@ -20,10 +20,11 @@ const ll MOD = 1000000007;
 #define f(variable,s,e,j) for(ll variable = s ; variable < e ; variable+=j)
 #define fr(variable,s,e,j) for(ll variable = s ; variable > e ; variable-=j)
 #define test(n) while(n--)
-#define trav(x,y) for(auto x : y)
-#define yeah cout << "YES\n"
-#define nah cout << "NO\n"
+#define trav(x,y) for(auto &x : y)
+#define yeah cout << "Yes\n"
+#define nah cout << "No\n"
 #define endl '\n'
+#define flushin cout << flush
 #define line "------------------------------------------"
 
 #define ordered_set tree<ll, null_type,less<ll>, rb_tree_tag,tree_order_statistics_node_update> 
