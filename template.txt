@@ -13,9 +13,7 @@ using namespace __gnu_pbds;
 using str = string;
 using ll = long long;
 using ld = long double;
-const ld Pi = 3.141592653589793238462643;
-const ld e = 2.718281828459045235360;
-const ll MOD = 1000000007;
+const ll MOD = 1e9 + 7;
 
 #define f(variable,s,e,j) for(ll variable = s ; variable < e ; variable+=j)
 #define fr(variable,s,e,j) for(ll variable = s ; variable > e ; variable-=j)
@@ -27,8 +25,8 @@ const ll MOD = 1000000007;
 #define flushin cout << flush
 #define line "------------------------------------------"
 
-#define ordered_set tree<ll, null_type,less<ll>, rb_tree_tag,tree_order_statistics_node_update> 
-#define ordered_map tree<pr<ll,ll>, null_type,less<pr<ll,ll>>, rb_tree_tag,tree_order_statistics_node_update> 
+#define indexed_set tree<ll, null_type,less<ll>, rb_tree_tag,tree_order_statistics_node_update> 
+#define indexed_map tree<pr<ll,ll>, null_type,less<pr<ll,ll>>, rb_tree_tag,tree_order_statistics_node_update> 
 
 #define vec vector
 #define fi first
