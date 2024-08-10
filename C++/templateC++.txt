@@ -27,7 +27,6 @@ ll MOD = 1e9 + 7;
 
 #define endl '\n'
 #define flushin cout << flush
-#define line "------------------------------------------"
 
 #define all(a) a.begin(), a.end()
 #define allr(a) a.rbegin(), a.rend()
