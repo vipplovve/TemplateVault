@@ -23,7 +23,7 @@ ll MOD = 1e9 + 7;
 #define testcase(n) while(n--)
 
 #define yeah(capital) cout << ((capital) ? "YES\n" : "Yes\n")
-#define nah(capital) cout << ((capital) ? "YES\n" : "Yes\n")
+#define nah(capital) cout << ((capital) ? "NO\n" : "No\n")
 
 #define endl '\n'
 #define flushin cout << flush
