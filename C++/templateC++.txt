@@ -16,7 +16,9 @@ using str = string;
 using ll = long long;
 using ld = long double;
 
-ll MOD = 1e9 + 7;
+const ll MOD = 1e9 + 7;
+const ll INF = LLONG_MAX;
+const ld EPS = 1e-10;
 
 #define FastIO ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 
@@ -30,10 +32,6 @@ ll MOD = 1e9 + 7;
 
 #define all(a) a.begin(), a.end()
 #define allr(a) a.rbegin(), a.rend()
-
-#define MODadd(x,y,m) ((x % m) + (y % m) + m) % m
-#define MODsub(x,y,m) ((x % m) - (y % m) + m) % m
-#define MODmul(x,y,m) ((x % m) * (y % m)) % m
 
 #define setbits(x) __builtin_popcountll(x)
 #define trailzero(x) __builtin_ctz(x)
