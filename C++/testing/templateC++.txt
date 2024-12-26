@@ -1,7 +1,7 @@
 /*
     || साम्ब-सदाशिव ||
 
-    author: viplove tyagi (@vipplovve).
+    author: viplove tyagi (@chillisauce).
 
     the template and code snippets used, if any, have been taken from: -
 	
@@ -21,7 +21,7 @@ const ll INF = 4e18;
 const ld EPS = 1e-10;
 
 #define FastIO ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
-#define TimeTaken cerr << endl << "Execution Took: " << 1000 * clock() / CLOCKS_PER_SEC << " ms." << endl;
+#define TimeTaken cerr << "Execution Took: " << 1000 * clock() / CLOCKS_PER_SEC << " ms." << endl;
 #define Precise cout << fixed << setprecision(15); 
 
 #define testcase(n) while(n--)
