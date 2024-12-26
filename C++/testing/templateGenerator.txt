@@ -1,7 +1,7 @@
 /*
     || साम्ब-सदाशिव ||
 
-    author: viplove tyagi (@vipplovve).
+    author: viplove tyagi (@chillisauce).
 
     This generator script is designed for competitive programming stress testing.
     It uses mt19937 for random number generation.
