@@ -1,7 +1,7 @@
 #
 #   || साम्ब-सदाशिव ||
 #
-#   author: viplove tyagi (@vipplovve).
+#   author: viplove tyagi (@chillisauce).
 #
 #   the template and code snippets used, if any, have been taken from: -
 #	
